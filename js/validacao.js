@@ -90,7 +90,7 @@ function validaCPF(input) {
 
     input.setCustomValidity(mensagem)
 }
-
+// Checando números repetidos
 function checaCPFRepetido(cpf) {
     const valoresRepetidos = [
         '00000000000',
@@ -113,4 +113,16 @@ function checaCPFRepetido(cpf) {
     })
 
     return cpfValido
+}
+
+// verificando estrutura via calculo(deveria via API da Receita Federal)
+
+function checaEstruturaCPF (cpf) {
+    const multiplicador = 10
+
+    return checaDigitoVerificador(cpf, multiplicador)
+}
+
+function confirmaDigito (soma) {
+    return 11 - (soma % 11)
 }

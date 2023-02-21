@@ -43,7 +43,8 @@ const mensagensDeErro = {
     },
     cep: {
         valueMissing: 'O campo de CEP não pode estar vazio.',
-        patternMismatch: 'O CEP digitado não é válido.' 
+        patternMismatch: 'O CEP digitado não é válido.',
+        customError: 'Não foi possível verificar o CEP.'
     },
     logradouro: {
         valueMissing: 'O campo de Logradouro não pode estar vazio.',
@@ -53,6 +54,9 @@ const mensagensDeErro = {
     },
     estado: {
         valueMissing: 'O campo de estado não pode estar vazio.',
+    },
+    preco: {
+        valueMissing: 'O campo de preço não pode estar vazio.'
     }
 }
 
@@ -175,9 +179,24 @@ function recuperarCEP(input) {
             Response => Response.json()
         ).then(
             data => {
-                console.log(data)
+                if(data.erro) {
+                    input.setCustomValidity('Não foi possível verificar o CEP.')
+                    return
+                }
+                input.setCustomValidity('')
+                preencheCamposComCEP(data)
+                return
             }
         )
     }
+}
 
+function preencheCamposComCEP(data) {
+    const logradouro = document.querySelector('[data-tipo="logradouro"]')
+    const cidade = document.querySelector('[data-tipo="cidade"]')
+    const estado = document.querySelector('[data-tipo="estado"]')
+
+    logradouro.value = data.logradouro
+    cidade.value = data.localidade
+    estado.value = data.uf
 }

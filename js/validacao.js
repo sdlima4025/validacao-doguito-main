@@ -50,13 +50,13 @@ const mensagensDeErro = {
         valueMissing: 'O campo de Logradouro não pode estar vazio.',
     },
     cidade: {
-        valueMissing: 'O campo de cidade não pode estar vazio.',
+        valueMissing: 'O campo de cidade não pode estar vazio.'
     },
     estado: {
-        valueMissing: 'O campo de estado não pode estar vazio.',
+        valueMissing: 'O campo de estado não pode estar vazio.'
     },
     preco: {
-        valueMissing: 'O campo de preço não pode estar vazio.'
+        valueMissing: 'O campo Preço não pode estar vazio.'
     }
 }
 
@@ -123,7 +123,7 @@ function checaCPFRepetido(cpf) {
 
     valoresRepetidos.forEach(valor => {
         if(valor == cpf) {
-           cpfValido = false
+        cpfValido = false
         }
     })
 
